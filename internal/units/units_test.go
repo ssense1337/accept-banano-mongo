@@ -9,15 +9,15 @@ import (
 
 const (
 	rawValue  = "12340000000000000000000000000000"
-	nanoValue = "12.34"
+	bananoValue = "12.34"
 )
 
 func TestBananoToRaw(t *testing.T) {
-	i := BananoToRaw(decimal.RequireFromString(nanoValue))
+	i := BananoToRaw(decimal.RequireFromString(bananoValue))
 	assert.Equal(t, rawValue, i.String())
 }
 
 func TestRawToBanano(t *testing.T) {
 	i := decimal.RequireFromString(rawValue)
-	assert.Equal(t, nanoValue, RawToBanano(i).String())
+	assert.Equal(t, bananoValue, RawToBanano(i).String())
 }
