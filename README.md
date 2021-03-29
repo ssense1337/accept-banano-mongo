@@ -2,6 +2,7 @@
 
 ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/tigwyk/acceptbanano)
 ![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/tigwyk/acceptbanano)
+![Docker Pulls](https://img.shields.io/docker/pulls/tigwyk/acceptbanano)
 
 Payment gateway for [BANANO](https://banano.cc)
 
