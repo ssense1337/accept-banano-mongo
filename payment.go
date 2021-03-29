@@ -326,7 +326,7 @@ func (p *Payment) checkPending() error {
 	var totalAmount decimal.Decimal
 	accountInfo, err := node.AccountInfo(p.account)
 	switch err {
-	case nano.ErrAccountNotFound:
+	case banano.ErrAccountNotFound:
 	case nil:
 		totalAmount = accountInfo.Balance
 	default:

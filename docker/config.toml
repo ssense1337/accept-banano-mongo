@@ -2,10 +2,10 @@
 DatabasePath = "/opt/data/accept-banano.db"
 # Listen to all interfaces (in container) at 8080
 ListenAddress = "0.0.0.0:8080"
-# Your Nano node RPC URL
-NodeURL = "http://nano_node_1:7072/"
-# The WebSocket URL to your Nano node
-NodeWebsocketURL = "ws://nano_node_1:7074"
+# Your banano node RPC URL
+NodeURL = "http://banano_node_1:7072/"
+# The WebSocket URL to your baNano node
+NodeWebsocketURL = "ws://banano_node_1:7074"
 # Set this to your merchant account.
 Account = "ban_1youraccount3fp9utkor5ixmxyg8kme8fnzc4zty145ibch8kf5jwpnzr3r"
 # CoinMarketCap API key. Available from https://coinmarketcap.com/api/
