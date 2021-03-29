@@ -1,4 +1,4 @@
-module github.com/accept-nano/accept-nano
+module github.com/tigwyk/accept-banano
 
 go 1.13
 

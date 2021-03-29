@@ -16,7 +16,7 @@ import (
 
 const (
 	tickerURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest"
-	nanoID    = "1567"
+	bananoID    = "4704"
 )
 
 type priceWithTimestamp struct {
@@ -53,7 +53,7 @@ func NewAPI(apiKey string, clientTimeout, cacheDuration time.Duration) *API {
 	}
 }
 
-func (p *API) GetNanoPrice(currency string) (price decimal.Decimal, err error) {
+func (p *API) GetBananoPrice(currency string) (price decimal.Decimal, err error) {
 	if p.apiKey == "" {
 		err = errors.New("empty CoinmarketcapAPIKey value in config")
 		return
@@ -76,7 +76,7 @@ func (p *API) GetNanoPrice(currency string) (price decimal.Decimal, err error) {
 	}
 
 	q := url.Values{}
-	q.Add("id", nanoID)
+	q.Add("id", bananoID)
 	q.Add("convert", currency)
 
 	req.Header.Set("Accepts", "application/json")
@@ -105,7 +105,7 @@ func (p *API) GetNanoPrice(currency string) (price decimal.Decimal, err error) {
 	if err != nil {
 		return
 	}
-	currencyVal, ok := response.Data[nanoID]
+	currencyVal, ok := response.Data[bananoID]
 	if !ok {
 		err = errors.New("bad currency")
 		return

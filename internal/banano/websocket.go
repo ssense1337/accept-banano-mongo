@@ -1,4 +1,4 @@
-package nano
+package banano
 
 import (
 	"encoding/json"

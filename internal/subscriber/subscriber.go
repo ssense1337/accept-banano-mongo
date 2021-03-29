@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/accept-nano/accept-nano/internal/nano"
+	"github.com/tigwyk/accept-banano/internal/banano"
 	"github.com/cenkalti/log"
 )
 
@@ -16,7 +16,7 @@ type Subscriber struct {
 	writeTimeout        time.Duration
 	ackTimeout          time.Duration
 	keepaliveDuration   time.Duration
-	newConnectionC      chan *nano.Websocket
+	newConnectionC      chan *banano.Websocket
 	updateSubscriptionC chan updateSubscription
 	closeC              chan struct{}
 
@@ -44,7 +44,7 @@ func New(wsURL string, handshakeTimeout, writeTimeout, ackTimeout, keepaliveDura
 		writeTimeout:        writeTimeout,
 		ackTimeout:          ackTimeout,
 		keepaliveDuration:   keepaliveDuration,
-		newConnectionC:      make(chan *nano.Websocket),
+		newConnectionC:      make(chan *banano.Websocket),
 		updateSubscriptionC: make(chan updateSubscription),
 		closeC:              make(chan struct{}),
 		pendingAcks:         make(map[string]chan struct{}),
@@ -69,7 +69,7 @@ func (s *Subscriber) Run() {
 }
 
 func (s *Subscriber) writer() {
-	var ws *nano.Websocket
+	var ws *banano.Websocket
 	connected := func() bool { return ws != nil }
 
 	var subscribed, toAdd, toDel map[string]struct{}
@@ -94,7 +94,7 @@ func (s *Subscriber) writer() {
 			toAdd = make(map[string]struct{})
 			toDel = make(map[string]struct{})
 			t.Stop()
-			msg := nano.OutgoingMessage{
+			msg := banano.OutgoingMessage{
 				Action: "subscribe",
 				Topic:  "confirmation",
 				Options: map[string]interface{}{
@@ -130,7 +130,7 @@ func (s *Subscriber) writer() {
 			if !connected() {
 				continue
 			}
-			msg := nano.OutgoingMessage{
+			msg := banano.OutgoingMessage{
 				Action: "update",
 				Topic:  "confirmation",
 				Options: map[string]interface{}{
@@ -144,7 +144,7 @@ func (s *Subscriber) writer() {
 				break
 			}
 		case <-keepAlive.C:
-			msg := nano.OutgoingMessage{
+			msg := banano.OutgoingMessage{
 				Action: "ping",
 			}
 			err := s.sendWithTimeout(ws, msg)
@@ -162,7 +162,7 @@ func (s *Subscriber) writer() {
 }
 
 func (s *Subscriber) reader() {
-	ws := nano.NewWebsocket(s.url)
+	ws := banano.NewWebsocket(s.url)
 	err := ws.Connect(s.handshakeTimeout)
 	if err != nil {
 		log.Errorln("websocket connect error:", err.Error())
@@ -236,7 +236,7 @@ func (s *Subscriber) Unsubscribe(account string) {
 	}
 }
 
-func (s *Subscriber) sendWithTimeout(ws *nano.Websocket, msg nano.OutgoingMessage) error {
+func (s *Subscriber) sendWithTimeout(ws *banano.Websocket, msg banano.OutgoingMessage) error {
 	msg.RequireAck()
 	ch := make(chan struct{})
 	s.m.Lock()

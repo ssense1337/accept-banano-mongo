@@ -35,7 +35,7 @@ The configuration and database are stored at `/opt/data` so you should map that 
 
 #### Docker Compose
 
-Example configuration with NANO node:
+Example configuration with BANANO node:
 
 ```yaml
 version: '3'

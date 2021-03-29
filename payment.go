@@ -326,13 +326,13 @@ func (p *Payment) checkPending() error {
 	var totalAmount decimal.Decimal
 	accountInfo, err := node.AccountInfo(p.account)
 	switch err {
-	case nano.ErrAccountNotFound:
+	case banano.ErrAccountNotFound:
 	case nil:
 		totalAmount = accountInfo.Balance
 	default:
 		return err
 	}
-	pendingBlocks, err := node.Pending(p.account, config.MaxPayments, units.NanoToRaw(config.ReceiveThreshold))
+	pendingBlocks, err := node.Pending(p.account, config.MaxPayments, units.BananoToRaw(config.ReceiveThreshold))
 	if err != nil {
 		return err
 	}
@@ -341,7 +341,7 @@ func (p *Payment) checkPending() error {
 	}
 	for hash, pendingBlock := range pendingBlocks {
 		log.Debugf("received new block: %#v", hash)
-		log.Debugln("amount:", units.RawToNano(pendingBlock.Amount))
+		log.Debugln("amount:", units.RawToBanano(pendingBlock.Amount))
 		totalAmount = totalAmount.Add(pendingBlock.Amount)
 		if p.SubPayments == nil {
 			p.SubPayments = make(map[string]SubPayment, 1)
@@ -351,7 +351,7 @@ func (p *Payment) checkPending() error {
 			Amount:  pendingBlock.Amount,
 		}
 	}
-	log.Debugln("total amount:", units.RawToNano(totalAmount))
+	log.Debugln("total amount:", units.RawToBanano(totalAmount))
 	if !p.Balance.Equal(totalAmount) {
 		p.Balance = totalAmount
 		err = p.Save()
@@ -367,7 +367,7 @@ func (p *Payment) checkPending() error {
 
 func (p *Payment) isFulfilled() bool {
 	if !config.UnderPaymentToleranceFixed.IsZero() {
-		tolerance := units.NanoToRaw(config.UnderPaymentToleranceFixed)
+		tolerance := units.BananoToRaw(config.UnderPaymentToleranceFixed)
 		if p.Balance.GreaterThanOrEqual(p.Amount.Sub(tolerance)) {
 			return true
 		}
@@ -383,7 +383,7 @@ func (p *Payment) isFulfilled() bool {
 }
 
 func (p *Payment) receivePending() error {
-	pendingBlocks, err := node.Pending(p.account, config.MaxPayments, units.NanoToRaw(config.ReceiveThreshold))
+	pendingBlocks, err := node.Pending(p.account, config.MaxPayments, units.BananoToRaw(config.ReceiveThreshold))
 	if err != nil {
 		return err
 	}
@@ -417,10 +417,10 @@ func (p *Payment) notifyMerchant() error {
 	}
 	notification := Notification{
 		Account:          p.account,
-		Amount:           units.RawToNano(p.Amount),
+		Amount:           units.RawToBanano(p.Amount),
 		AmountInCurrency: p.AmountInCurrency,
 		Currency:         p.Currency,
-		Balance:          units.RawToNano(p.Balance),
+		Balance:          units.RawToBanano(p.Balance),
 		State:            p.State,
 		Fulfilled:        p.FulfilledAt != nil,
 		FulfilledAt:      p.FulfilledAt,

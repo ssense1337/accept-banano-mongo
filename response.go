@@ -30,15 +30,15 @@ type SubPaymentResponse struct {
 func NewResponse(p *Payment, token string) *Response {
 	subPayments := make(map[string]SubPaymentResponse, len(p.SubPayments))
 	for k, v := range p.SubPayments {
-		subPayments[k] = SubPaymentResponse{Account: v.Account, Amount: units.RawToNano(v.Amount)}
+		subPayments[k] = SubPaymentResponse{Account: v.Account, Amount: units.RawToBanano(v.Amount)}
 	}
 	return &Response{
 		Token:            token,
 		Account:          p.account,
-		Amount:           units.RawToNano(p.Amount),
+		Amount:           units.RawToBanano(p.Amount),
 		AmountInCurrency: p.AmountInCurrency,
 		Currency:         p.Currency,
-		Balance:          units.RawToNano(p.Balance),
+		Balance:          units.RawToBanano(p.Balance),
 		State:            p.State,
 		SubPayments:      subPayments,
 		RemainingSeconds: int(p.remainingDuration() / time.Second),

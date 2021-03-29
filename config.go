@@ -29,7 +29,7 @@ type Config struct {
 	NodeURL string
 	// Websocket URL of a running node.
 	// With the help of Websocket support, sent payment can be detected immediatlely on the network.
-	// Otherwise, accept-nano needs to poll the node for checking account balances.
+	// Otherwise, accept-banano needs to poll the node for checking account balances.
 	NodeWebsocketURL string
 	// Disable subscribing confirmations over WebSocket
 	// Only polling method will be used for checking balances.
@@ -69,7 +69,7 @@ type Config struct {
 	ReceiveThreshold decimal.Decimal
 	// Maximum number of payments allowed to fulfill the expected amount. Limited to prevent DOS.
 	MaxPayments int
-	// Up to this amount underpayments are accepted. Amount in NANO.
+	// Up to this amount underpayments are accepted. Amount in BANANO.
 	UnderPaymentToleranceFixed decimal.Decimal
 	// Up to this amount underpayments are accepted. Amount in percent.
 	UnderPaymentTolerancePercent float64
@@ -101,16 +101,16 @@ type Config struct {
 }
 
 var DefaultConfig = Config{
-	DatabasePath:                  "accept-nano.db",
+	DatabasePath:                  "accept-banano.db",
 	ListenAddress:                 "127.0.0.1:8080",
-	NodeURL:                       "http://127.0.0.1:7076",
-	NodeWebsocketURL:              "ws://127.0.0.1:7078",
+	NodeURL:                       "http://127.0.0.1:7072",
+	NodeWebsocketURL:              "ws://127.0.0.1:7074",
 	NodeWebsocketHandshakeTimeout: 10 * time.Second,
 	NodeWebsocketWriteTimeout:     10 * time.Second,
 	NodeWebsocketAckTimeout:       10 * time.Second,
 	NodeWebsocketKeepAlivePeriod:  time.Minute,
 	NodeTimeout:                   time.Minute,
-	Representative:                "nano_1ninja7rh37ehfp9utkor5ixmxyg8kme8fnzc4zty145ibch8kf5jwpnzr3r",
+	Representative:                "ban_1ninja7rh37ehfp9utkor5ixmxyg8kme8fnzc4zty145ibch8kf5jwpnzr3r",
 	ShutdownTimeout:               5 * time.Second,
 	RateLimit:                     "60-H",
 	ReceiveThreshold:              decimal.RequireFromString("0.001"),
@@ -138,8 +138,8 @@ func (c *Config) Read() (err error) {
 	if err != nil {
 		return
 	}
-	err = k.Load(env.Provider("ACCEPTNANO_", ".", func(s string) string {
-		return strings.Replace(strings.TrimPrefix(s, "ACCEPTNANO_"), "_", ".", -1)
+	err = k.Load(env.Provider("ACCEPTBANANO_", ".", func(s string) string {
+		return strings.Replace(strings.TrimPrefix(s, "ACCEPTBANANO_"), "_", ".", -1)
 	}), nil)
 	if err != nil {
 		return

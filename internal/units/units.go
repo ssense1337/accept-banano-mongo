@@ -6,10 +6,10 @@ import (
 
 const exp = 30
 
-func NanoToRaw(nano decimal.Decimal) decimal.Decimal {
-	return nano.Shift(exp)
+func BananoToRaw(banano decimal.Decimal) decimal.Decimal {
+	return banano.Shift(exp)
 }
 
-func RawToNano(raw decimal.Decimal) decimal.Decimal {
+func RawToBanano(raw decimal.Decimal) decimal.Decimal {
 	return raw.Shift(-exp)
 }

@@ -8,13 +8,13 @@ import (
 )
 
 func receiveBlock(hash string, amount decimal.Decimal, account, privateKey, publicKey string) error {
-	log.Debugln("amount:", units.RawToNano(amount).String())
+	log.Debugln("amount:", units.RawToBanano(amount).String())
 	var newReceiverBlockPreviousHash string
 	var newReceiverBalance decimal.Decimal
 	var workHash string
 	receiverAccountInfo, err := node.AccountInfo(account)
 	switch err {
-	case nano.ErrAccountNotFound:
+	case banano.ErrAccountNotFound:
 		// First block in account chain. This is the common case.
 		newReceiverBlockPreviousHash = "0000000000000000000000000000000000000000000000000000000000000000"
 		newReceiverBalance = amount
@@ -28,7 +28,7 @@ func receiveBlock(hash string, amount decimal.Decimal, account, privateKey, publ
 	default:
 		return err
 	}
-	work, err := nano.GenerateWork(workHash, false)
+	work, err := banano.GenerateWork(workHash, false)
 	if err != nil {
 		return err
 	}
