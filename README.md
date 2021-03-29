@@ -1,8 +1,8 @@
-# accept-nano
+# accept-banano
 
 Payment gateway for [NANO](https://nano.org)
 
-*accept-nano* is a server program that helps you to accept NANO payments in a fast, secure and cost-efficient way.
+*accept-banano* is a server program that helps you to accept NANO payments in a fast, secure and cost-efficient way.
 
 You can use it independently or together with it's web client [accept-nano-client](https://github.com/accept-nano/accept-nano-client).
 
