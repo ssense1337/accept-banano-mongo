@@ -12,12 +12,12 @@ const (
 	nanoValue = "12.34"
 )
 
-func TestNanoToRaw(t *testing.T) {
-	i := NanoToRaw(decimal.RequireFromString(nanoValue))
+func TestBananoToRaw(t *testing.T) {
+	i := BananoToRaw(decimal.RequireFromString(nanoValue))
 	assert.Equal(t, rawValue, i.String())
 }
 
-func TestRawToNano(t *testing.T) {
+func TestRawToBanano(t *testing.T) {
 	i := decimal.RequireFromString(rawValue)
-	assert.Equal(t, nanoValue, RawToNano(i).String())
+	assert.Equal(t, nanoValue, RawToBanano(i).String())
 }

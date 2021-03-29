@@ -8,7 +8,7 @@ import (
 )
 
 func receiveBlock(hash string, amount decimal.Decimal, account, privateKey, publicKey string) error {
-	log.Debugln("amount:", units.RawToNano(amount).String())
+	log.Debugln("amount:", units.RawToBanano(amount).String())
 	var newReceiverBlockPreviousHash string
 	var newReceiverBalance decimal.Decimal
 	var workHash string

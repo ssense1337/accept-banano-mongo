@@ -257,7 +257,7 @@ func handleAdminSendToMerchant(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	err = payment.sendToMerchant()
-	if err == nano.ErrAccountNotFound {
+	if err == banano.ErrAccountNotFound {
 		http.Error(w, err.Error(), http.StatusNotFound)
 		return
 	}

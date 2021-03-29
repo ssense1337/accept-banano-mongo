@@ -101,7 +101,7 @@ func handlePay(w http.ResponseWriter, r *http.Request) {
 	}
 	currency = strings.ToUpper(currency)
 	payment := &Payment{
-		Amount:           units.NanoToRaw(amount),
+		Amount:           units.BananoToRaw(amount),
 		AmountInCurrency: amountInCurrency,
 		Currency:         currency,
 		State:            r.FormValue("state"),
