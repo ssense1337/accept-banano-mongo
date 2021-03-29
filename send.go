@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/tigwyk/accept-banano/internal/nano"
+	"github.com/tigwyk/accept-banano/internal/banano"
 	"github.com/cenkalti/log"
 	"github.com/shopspring/decimal"
 )

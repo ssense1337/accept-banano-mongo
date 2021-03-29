@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/accept-nano/accept-nano/internal/nano"
-	"github.com/accept-nano/accept-nano/internal/units"
+	"github.com/tigwyk/accept-banano/internal/banano"
+	"github.com/tigwyk/accept-banano/internal/units"
 	"github.com/cenkalti/log"
 	"github.com/shopspring/decimal"
 )

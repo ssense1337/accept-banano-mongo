@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/accept-nano/accept-nano/internal/maplock"
-	"github.com/accept-nano/accept-nano/internal/nano"
-	"github.com/accept-nano/accept-nano/internal/units"
+	"github.com/tigwyk/accept-banano/internal/maplock"
+	"github.com/tigwyk/accept-banano/internal/banano"
+	"github.com/tigwyk/accept-banano/internal/units"
 	"github.com/cenkalti/log"
 	"github.com/shopspring/decimal"
 	"go.etcd.io/bbolt"
