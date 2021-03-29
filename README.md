@@ -8,7 +8,7 @@ Payment gateway for [BANANO](https://banano.cc)
 
 *accept-banano* is a server program that helps you to accept BANANO payments in a fast, secure and cost-efficient way.
 
-You can use it independently or together with it's web client [accept-banano-client](https://github.com/accept-nano/accept-nano-client).
+You can use it independently or together with it's web client [accept-banano-client](https://github.com/tigwyk/accept-banano-client).
 
 ## Installing
 
