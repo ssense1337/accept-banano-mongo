@@ -11,10 +11,10 @@ if [ ! -f "${datadir}/config.toml" ]; then
   echo "Config File not found, adding default."
   cp "/docker/config.toml" "${datadir}/config.toml"
   # generate new seed
-  seed=$(accept-nano -seed)
+  seed=$(accept-banano -seed)
   echo "# Your generated seed" >> "${datadir}/config.toml"
   echo "Seed = \"${seed}\"" >> "${datadir}/config.toml"
 fi
 
 # start service
-exec accept-nano -config /opt/data/config.toml
+exec accept-banano -config /opt/data/config.toml
