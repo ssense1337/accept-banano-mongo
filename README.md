@@ -1,5 +1,7 @@
 # accept-banano
 
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/tigwyk/acceptbanano)
+
 Payment gateway for [BANANO](https://banano.cc)
 
 *accept-banano* is a server program that helps you to accept BANANO payments in a fast, secure and cost-efficient way.
