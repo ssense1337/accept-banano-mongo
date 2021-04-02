@@ -16,7 +16,7 @@ import (
 
 const (
 	tickerURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest"
-	bananoID    = "4704"
+	bananoID  = "4704"
 )
 
 type priceWithTimestamp struct {
@@ -77,7 +77,7 @@ func (p *API) GetBananoPrice(currency string) (price decimal.Decimal, err error)
 
 	q := url.Values{}
 	q.Add("id", bananoID)
-	//q.Add("convert", currency)
+	q.Add("convert", currency)
 
 	req.Header.Set("Accepts", "application/json")
 	req.Header.Add("X-CMC_PRO_API_KEY", p.apiKey)
