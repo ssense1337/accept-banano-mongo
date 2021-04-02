@@ -44,7 +44,7 @@ Example configuration with BANANO node:
 ```yaml
 version: '3'
 services:
-  accept-nano:
+  accept-banano:
     image: "tigwyk/acceptbanano"
     restart: "unless-stopped"
     ports:
