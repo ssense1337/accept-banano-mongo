@@ -6,11 +6,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/tigwyk/accept-banano/internal/hub"
-	"github.com/tigwyk/accept-banano/internal/units"
 	"github.com/cenkalti/log"
 	"github.com/rs/cors"
 	"github.com/shopspring/decimal"
+	"github.com/tigwyk/accept-banano/internal/hub"
+	"github.com/tigwyk/accept-banano/internal/units"
 	"github.com/ulule/limiter/v3/drivers/middleware/stdlib"
 	"golang.org/x/net/websocket"
 )
@@ -87,7 +87,7 @@ func handlePay(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	currency := r.FormValue("currency")
-	if currency != "" {
+	if currency != "" && currency != "BANANO" {
 		price, err2 := priceAPI.GetBananoPrice(currency)
 		if err2 != nil {
 			log.Error(err2)

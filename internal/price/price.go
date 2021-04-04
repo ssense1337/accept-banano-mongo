@@ -16,7 +16,7 @@ import (
 
 const (
 	tickerURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest"
-	bananoID    = "4704"
+	bananoID  = "4704"
 )
 
 type priceWithTimestamp struct {

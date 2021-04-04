@@ -4,7 +4,7 @@ import (
 	"github.com/shopspring/decimal"
 )
 
-const exp = 30
+const exp = 29
 
 func BananoToRaw(banano decimal.Decimal) decimal.Decimal {
 	return banano.Shift(exp)
